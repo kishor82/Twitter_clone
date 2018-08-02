@@ -4,9 +4,25 @@
  <div>
  	<span> Welcome, {{session['username']}}</span><br>
  	[<a href="{{url_for('home')}}">Home</a>]
- 	[<a href="{{url_for('profile')}}">View Profile</a>]
+ 	[<a href="{{url_for('profile',id=session['username'])}}">View Profile</a>]
  	[<a href="{{url_for('userlist')}}">View user List</a>]
  	[<a href="{{url_for('logout')}}">Logout</a>]
  </div>
+
+ <form method="post" action="{{url_for('create_tweet')}}">
+ 	<fieldset>
+ 		<label for="tweet">What's Happening? </label><br>
+ 		<textarea name="body" rows="4" cols="50"></textarea><br>
+ 		<input type="submit" value="Tweet">	
+ 		</label>
+ 	</fieldset>
+ </form>
+ {% if records %}
+	 {% for k ,v in records.items() %}
+	 	{{k[v]}}
+
+	 {% endfor %}
+	 {% endif%}
+
 
 {% endblock %}
